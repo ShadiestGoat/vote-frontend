@@ -1,6 +1,6 @@
 import { browser } from "$app/environment";
 
-export const API_HOST = "stuco.online"
+export const API_HOST = "TODO:"
 export const SECURITY_S = "s"
 export const API_BASE = "http" + SECURITY_S + "://" + API_HOST
 
