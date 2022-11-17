@@ -1,0 +1,65 @@
+:root {
+    --accent-1: #2e3440;
+    --accent-2: #3b4252;
+    --accent-3: #434c5e;
+    --accent-4: #4c566a;
+    
+    --color-danger: #bf616a;
+    --color-success: #a3be8c;
+    --color-primary: #7171ec;
+
+    --ico-1: #d8dee9;
+    --ico-2: #e5e9f0;
+    --ico-3: #eceff4;
+
+    
+    --fonts: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+    background-color: var(--accent-1);
+    scroll-behavior: smooth;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.fw {
+    width: 100vw;
+}
+
+.wp {
+    width: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+*,
+:after,
+:before {
+    box-sizing: border-box;        
+    font-family: var(--fonts);
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    color: var(--ico-3);
+    margin: 0;
+    margin-bottom: 0;
+    font-weight: bold;
+    line-height: 1.1;
+    font-family: var(--fonts);
+}
+
+::selection {
+    color: var(--ico-3);
+    background: #4141ad;
+}
