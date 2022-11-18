@@ -1,26 +1,26 @@
 <script lang="ts">
-	import NotReady from "$lib/notReady.svelte";
-	import { API_HOST, type stats, SECURITY_S } from "$lib/store";
-	import { onMount } from "svelte";
-	import { flip } from "svelte/animate";
-	import { fly } from "svelte/transition";
-    let ready = false
-    let data:stats | null = null
+	// import NotReady from "$lib/notReady.svelte";
+	// import { API_HOST, type stats, SECURITY_S } from "$lib/store";
+	// import { onMount } from "svelte";
+	// import { flip } from "svelte/animate";
+	// import { fly } from "svelte/transition";
+    // let ready = false
+    // let data:stats | null = null
 
-    onMount(async () => {
-        const ws = new WebSocket("ws" + SECURITY_S + "://" + API_HOST + "/api/ws")
-        ws.onopen = () => {
-            ready = true
-        }
-        ws.onmessage = function (ev) {
-            const tmp = JSON.parse(ev.data)
-            if (tmp.e == "P") {
-                ws.send("P")
-            } else {
-                data = tmp
-            }
-        }
-    })
+    // onMount(async () => {
+    //     const ws = new WebSocket("ws" + SECURITY_S + "://" + API_HOST + "/api/ws")
+    //     ws.onopen = () => {
+    //         ready = true
+    //     }
+    //     ws.onmessage = function (ev) {
+    //         const tmp = JSON.parse(ev.data)
+    //         if (tmp.e == "P") {
+    //             ws.send("P")
+    //         } else {
+    //             data = tmp
+    //         }
+    //     }
+    // })
 </script>
 
 <style>
@@ -44,7 +44,7 @@
         background: var(--accent-2);
         border-radius: 16px;
     }
-    .stat {
+    /* .stat {
         font-size: 1.5rem;
     }
     .delta {
@@ -91,31 +91,32 @@
         grid-column-end: 4;
         border-top: var(--color) solid 3px;
         height: 100%;
-    }
+    } */
 </style>
 
-{#if ready && data}
-    <div class="box">
-        <div class="container">
-            {#each data.top10 as v, ind (`rank-${ind+1}`)}
-                <h3 class="stat rank" style="--rank: {ind+1}">{ind+1}</h3>
-            {/each}
-            {#each data.top10 as v, ind (v.pictureID)}
-                <div class="rank-info" style="--index: {ind+1}" in:fly|local={{y: 250, duration: 1100}} out:fly|local={{y: 125, duration: 1100}} animate:flip={{duration: 1500}}>
-                    <h1 class="stat">{v.pictureID}</h1>
-                    <h2 class="stat delta">{v.likes}</h2>
-                </div>
-            {/each}
-            <div class="total-border border"></div>
-            <div class="place-border border"></div>
-            <div class="total-b total">
-                <h1 class="stat">Total</h1>
+<div class="box">
+    <div class="container">
+        <h1 style="margin: 34vh auto; font-size: 6rem; width: 100vw; text-align: center">Announcement on Monday!</h1>
+        <!-- {#each data.top10 as v, ind (`rank-${ind+1}`)}
+            <h3 class="stat rank" style="--rank: {ind+1}">{ind+1}</h3>
+        {/each}
+        {#each data.top10 as v, ind (v.pictureID)}
+            <div class="rank-info" style="--index: {ind+1}" in:fly|local={{y: 250, duration: 1100}} out:fly|local={{y: 125, duration: 1100}} animate:flip={{duration: 1500}}>
+                <h1 class="stat">{v.pictureID}</h1>
+                <h2 class="stat delta">{v.likes < 0 ? 0 : v.likes}</h2>
             </div>
-            <div class="total-b total-stat stat">
-                <h3 class="stat">{data.total}</h3>
-            </div>
+        {/each}
+        <div class="total-border border"></div>
+        <div class="place-border border"></div>
+        <div class="total-b total">
+            <h1 class="stat">Total</h1>
         </div>
+        <div class="total-b total-stat stat">
+            <h3 class="stat">{data.total}</h3>
+        </div> -->
     </div>
+</div>
+<!-- {#if ready && data}
 {:else}
     <NotReady />
-{/if}
+{/if} -->
