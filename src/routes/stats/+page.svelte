@@ -95,8 +95,8 @@
 </style>
 
 <div class="box">
-    <div class="container">
-        <h1 style="margin: 34vh auto; font-size: 6rem; width: 100vw; text-align: center">Announcement on Monday!</h1>
+    <h1 style="margin: 34vh auto; font-size: 6rem; width: 100vw; text-align: center">Announcement on Monday!</h1>
+    <!-- <div class="container"> -->
         <!-- {#each data.top10 as v, ind (`rank-${ind+1}`)}
             <h3 class="stat rank" style="--rank: {ind+1}">{ind+1}</h3>
         {/each}
@@ -114,7 +114,7 @@
         <div class="total-b total-stat stat">
             <h3 class="stat">{data.total}</h3>
         </div> -->
-    </div>
+    <!-- </div> -->
 </div>
 <!-- {#if ready && data}
 {:else}
