@@ -4,20 +4,15 @@
 	import { onMount } from "svelte";
 	import { flip } from "svelte/animate";
 	import { fly } from "svelte/transition";
-	import { browser } from "$app/environment";
-
     let ready = false
     let data:stats | null = null
-    let qrDimensions = 0
 
     onMount(async () => {
         const ws = new WebSocket("ws" + SECURITY_S + "://" + API_HOST + "/api/ws")
         ws.onopen = () => {
-            console.log("AAA")
             ready = true
         }
         ws.onmessage = function (ev) {
-            console.log(ev)
             const tmp = JSON.parse(ev.data)
             if (tmp.e == "P") {
                 ws.send("P")
@@ -25,28 +20,8 @@
                 data = tmp
             }
         }
-        refreshQR(window.innerWidth, window.innerHeight)
-        qrText = location.origin
     })
-
-    let innerWidth = 0
-    let innerHeight = 0
-
-    function refreshQR(width:number, height:number) {
-        if (!browser || width == 0) return
-        let boxMidWidth = width * 0.6
-        let qrWidth = (width - (boxMidWidth > 750 ? 750 : boxMidWidth < 500 ? 500 : boxMidWidth))/2
-        qrDimensions = Math.round(height * 0.25 > qrWidth*0.75 ? qrWidth * 0.75 : height * 0.25)
-        console.log(width, height, qrDimensions)
-    }
-
-    $: refreshQR(innerWidth, innerHeight)
-
-    let qrText = ""
-
 </script>
-
-<svelte:window bind:innerWidth bind:innerHeight />
 
 <style>
     .box {
