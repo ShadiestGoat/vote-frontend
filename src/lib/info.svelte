@@ -22,6 +22,10 @@
             }
         };
     }
+
+    function idToName(inp: string): string {
+        return inp.split(' & ').map(v => v.split(' ')[0]).join(' & ')
+    }
 </script>
 
 <style>
@@ -66,6 +70,6 @@
 </style>
 
 <div in:animate={{delay: 0, duration: 1020}} class="wrapper {throwAway ? "throw-away" : ""}" style={!throwAway ? `transform: ${transform}; transition: all ${transform == "none" ? '0.75' : ""}s;` : ""}>
-    <h1 class="name">{id}</h1>
+    <h1 class="name">{idToName(id)}</h1>
     <img src={API_BASE + "/cdn/" + id + ".webp"} class="img" alt="Img1">    
 </div>
